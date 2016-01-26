@@ -1,0 +1,13 @@
+This document contains these contents: the process of the system, and why I design it like this.
+
+Follow the requirements, there are more than 1,000,000 small log files in a same directory. For processing these files quickly, muti-threads is necessary.
+
+Basic Functions
+
+According to the requirements, I design this project to several parts:
+
+Calculating the counts of all the log files.
+
+Sorting the files by timestamp, and calculating the starting row number for every log files
+
+Writing the row number to every log files by muti-threads

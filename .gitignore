@@ -6,3 +6,5 @@
 **/.settings
 **/.class
 **/META-INF
+bin
+.classpath
