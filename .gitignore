@@ -1,0 +1,8 @@
+.class
+*.class
+**/target
+.class
+.project
+**/.settings
+**/.class
+**/META-INF
