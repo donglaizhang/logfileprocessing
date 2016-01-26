@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<artifactId>org.donglai</artifactId>
+	<groupId>donglai</groupId>
+	<version>1.0-SNAPSHOT</version>
+	<name>logfileprocessing</name>
+	<packaging>jar</packaging>
+	<url>https://github.com/donglaizhang/logfileprocessing</url>
+	<description>The project is used to process the log files, add the global row number to all the log files</description>
+
+	<developers>
+		<developer>
+			<name>Donglai Zhang</name>
+			<email>donglaicareer@gmail.com</email>
+		</developer>
+	</developers>
+
+
+	<dependencies>
+	      
+	</dependencies>
+
+	<build>
+		
+	</build>
+</project>
