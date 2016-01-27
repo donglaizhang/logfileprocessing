@@ -1,5 +1,4 @@
-This document contains these contents: the process of the system, and why I design it like this.
-
-Follow the requirements, there are more than 1,000,000 small log files in a same directory. For processing these files quickly, muti-threads is necessary.
-
-Basic Functions
+logtest.2014-09-11.log
+Basic 
+Functions
+ed

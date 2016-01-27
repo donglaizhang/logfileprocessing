@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
+import org.donglai.logp.utils.StringUtils;
+
 /**
  * ProcessorConext is used to initialize the context of the project. which
  * includes all content in /config.properties
@@ -14,8 +16,8 @@ import java.util.Properties;
  */
 public class ProcessorConext {
 	private static final String CONTEXT_CONFIG_FILE_NAME = "/config.properties";
-	private static final int MAX_THREADS_NUMBER = 48;
-	private static final int MIN_THREADS_NUMBER = 2;
+	public static final int MAX_THREADS_NUMBER = 48;
+	public static final int MIN_THREADS_NUMBER = 2;
 
 	static {
 		contextInitialized();
@@ -28,7 +30,7 @@ public class ProcessorConext {
 	/**
 	 * log file charset which is config in /config.properties
 	 */
-	private static String CHARSET = "utf-8";
+	private static String CHARSET = "UTF-8";
 
 	public static void contextInitialized() {
 		Properties props = new Properties();
@@ -37,22 +39,27 @@ public class ProcessorConext {
 			inputStream = ProcessorConext.class
 					.getResourceAsStream(CONTEXT_CONFIG_FILE_NAME);
 			props.load(inputStream);
-			String strNum = (String) props.get("Thread.number");
 			String file_charset = (String) props.get("logfile.charset");
 			if (file_charset != null && file_charset.length() > 0) {
 				if (Charset.isSupported(file_charset)) {
 					CHARSET = file_charset;
 				}
 			}
+			String strNum = (String) props.get("thread.number");
+			if (!StringUtils.isPositiveInt(strNum)) {
+				return;
+			}
 			int configNumbers = Integer.parseInt(strNum);
-			if (configNumbers > MAX_THREADS_NUMBER
-					|| configNumbers < MIN_THREADS_NUMBER) {
-				THREAD_NUMBERS = MIN_THREADS_NUMBER;
+			if (configNumbers <= MAX_THREADS_NUMBER
+					&& configNumbers >= MIN_THREADS_NUMBER) {
+				THREAD_NUMBERS = configNumbers;
 			}
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
+
+
 
 	public static int getThreadNumbers() {
 		return THREAD_NUMBERS;

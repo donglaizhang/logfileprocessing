@@ -38,7 +38,7 @@ public class SorterProcessor {
 			Stream<Path> streams = Files.list(logdir);
 			Iterator<Path> it = streams.iterator();
 			while (it.hasNext()) {
-				Path file = it.next().getFileName();
+				Path file = it.next();
 				if (isLegelFile(file.toString())) {
 					logfiles.add(file);
 				}

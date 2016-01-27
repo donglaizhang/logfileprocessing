@@ -1,22 +1,26 @@
-package org.donglai.logp;
+package org.donglai.logp.thread;
 
 import static org.junit.Assert.*;
 
+import java.nio.file.Paths;
+
+import org.donglai.logp.thread.RowCounterTask;
 import org.junit.Test;
 
 public class RowCounterTest {
-	RowCounter counter=new RowCounter();
 	@Test
 	public void testCountFileRowNumbers() {
 		String filename="/testlogfornumber.log";
 		String file_path=RowCounterTest.class.getResource(filename).getFile();
-		long rown=counter.countFileRowNumbers(file_path);
+		RowCounterTask counter=new RowCounterTask(Paths.get(file_path));
+		long rown=counter.countFileRowNumbers();
 		assertEquals(rown, 13);
 	}
 	@Test
 	public void testCountFileRowNumbers_for_noexist_file() {
 		String filename="noexist.log";
-		long rown=counter.countFileRowNumbers(filename);
-		assertEquals(rown, 0);
+		RowCounterTask counter=new RowCounterTask(Paths.get(filename));
+		long rown=counter.countFileRowNumbers();
+		assertEquals(rown, -1);
 	}
 }

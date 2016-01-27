@@ -15,8 +15,8 @@ public class SorterProcessorTest {
 		String real_path=SorterProcessorTest.class.getResource(dir).getFile();
 		List<Path> list = sp.getlogfiles(real_path);
 		assertEquals(list.size(), 4);
-		assertEquals(list.get(0).toString(), "logtest.2011-07-11.log");
-		assertEquals(list.get(2).toString(), "logtest.2014-07-12.log");
+		assertTrue(list.get(0).toString().endsWith("logtest.2011-07-11.log"));
+		assertTrue(list.get(2).toString().endsWith("logtest.2014-07-12.log"));
 	}
 	@Test
 	public void testGetlogfiles_for_Empty() {
