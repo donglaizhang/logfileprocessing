@@ -31,9 +31,7 @@ public class AppendRowNumberTask implements Callable<Boolean> {
 			if (!Files.exists(bkfile)) {
 				Files.move(logfile, bkfile);
 			}
-			if(Files.exists(logfile)){
-				Files.delete(logfile);
-			}
+			Files.deleteIfExists(logfile);
 			br = Files.newBufferedReader(bkfile);
 			Files.createFile(logfile);
 			writer = Files.newBufferedWriter(logfile);
@@ -66,7 +64,7 @@ public class AppendRowNumberTask implements Callable<Boolean> {
 				return false;
 			}
 		}
-		LOG.info("write row number for log file:"+bkfile.getFileName()+" successful");
+		LOG.debug("write row number for log file:"+bkfile.getFileName()+" successful");
 		try {
 			Files.delete(bkfile);
 		} catch (IOException e) {

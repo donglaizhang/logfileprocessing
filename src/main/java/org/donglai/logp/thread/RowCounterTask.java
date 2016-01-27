@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.donglai.logp.ProcessorConext;
+import org.donglai.logp.ProcessorContext;
 
 /**
  * Row Counter is used to calculate the total number of a file. If the logfile
@@ -21,7 +21,7 @@ public class RowCounterTask implements Callable<Long> {
 	private static final Log LOG = LogFactory.getLog(RowCounterTask.class);
 	public long countFileRowNumbers() {
 		long numberOfLines;
-		Charset charset = Charset.forName(ProcessorConext.getCharset());
+		Charset charset = Charset.forName(ProcessorContext.getCharset());
 		try (Stream<String> s = Files.lines(logfile, charset)) {
 			numberOfLines = s.count();
 			return numberOfLines;

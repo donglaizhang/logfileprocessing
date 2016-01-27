@@ -14,13 +14,14 @@ import org.donglai.logp.utils.StringUtils;
  * @author zdonking
  * 
  */
-public class ProcessorConext {
+public class ProcessorContext {
 	private static final String CONTEXT_CONFIG_FILE_NAME = "/config.properties";
 	public static final int MAX_THREADS_NUMBER = 48;
 	public static final int MIN_THREADS_NUMBER = 2;
-
+	private static boolean INITED=false;
 	static {
 		contextInitialized();
+		INITED=true;
 	}
 	/**
 	 * the number of threads which are used for executing append row number to
@@ -33,10 +34,13 @@ public class ProcessorConext {
 	private static String CHARSET = "UTF-8";
 
 	public static void contextInitialized() {
+		if(INITED){
+			return;
+		}
 		Properties props = new Properties();
 		InputStream inputStream = null;
 		try {
-			inputStream = ProcessorConext.class
+			inputStream = ProcessorContext.class
 					.getResourceAsStream(CONTEXT_CONFIG_FILE_NAME);
 			props.load(inputStream);
 			String file_charset = (String) props.get("logfile.charset");

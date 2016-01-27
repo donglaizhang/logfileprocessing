@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 import org.donglai.logp.thread.RowCounterTask;
 import org.donglai.logp.thread.ThreadManager;
@@ -67,8 +64,8 @@ public class RowNumberCalculator {
 		// new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime,
 		// milliseconds,runnableTaskQueue, handler);
 
-		ThreadPoolExecutor pool = null;
-		System.out.println(Long.MAX_VALUE);
+//		ThreadPoolExecutor pool = null;
+//		System.out.println(Long.MAX_VALUE);
 		// pool.execute(command);
 	}
 
