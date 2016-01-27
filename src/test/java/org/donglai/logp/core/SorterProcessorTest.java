@@ -1,10 +1,11 @@
-package org.donglai.logp;
+package org.donglai.logp.core;
 
 import static org.junit.Assert.*;
 
 import java.nio.file.Path;
 import java.util.List;
 
+import org.donglai.logp.core.SorterProcessor;
 import org.junit.Test;
 
 public class SorterProcessorTest {

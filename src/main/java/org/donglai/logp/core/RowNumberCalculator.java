@@ -1,4 +1,4 @@
-package org.donglai.logp;
+package org.donglai.logp.core;
 
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -23,6 +23,7 @@ public class RowNumberCalculator {
 					Path logfile = logfiles.get(i);
 					RowCounterTask counterTask = new RowCounterTask(logfile);
 					Future<Long> f = threadManager.getThreadPool().submit(counterTask);
+//					threadManager.getThreadPool().get
 					long rownum;
 					rownum = f.get();
 					if (rownum > 0) {

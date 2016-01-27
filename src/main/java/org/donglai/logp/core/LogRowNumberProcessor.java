@@ -1,4 +1,4 @@
-package org.donglai.logp;
+package org.donglai.logp.core;
 
 import java.nio.file.Path;
 import java.util.Map;

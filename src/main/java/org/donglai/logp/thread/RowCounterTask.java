@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.donglai.logp.ProcessorContext;
+import org.donglai.logp.core.ProcessorContext;
 
 /**
  * Row Counter is used to calculate the total number of a file. If the logfile

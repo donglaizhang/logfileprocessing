@@ -1,4 +1,4 @@
-package org.donglai.logp;
+package org.donglai.logp.core;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
+import org.donglai.logp.core.RowNumberCalculator;
+import org.donglai.logp.core.SorterProcessor;
 import org.junit.Before;
 import org.junit.Test;
 

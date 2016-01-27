@@ -1,4 +1,4 @@
-package org.donglai.logp;
+package org.donglai.logp.core;
 
 import java.io.IOException;
 import java.nio.file.Files;

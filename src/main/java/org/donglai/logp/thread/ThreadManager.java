@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.donglai.logp.ProcessorContext;
+import org.donglai.logp.core.ProcessorContext;
 
 public class ThreadManager {
 	ThreadPoolExecutor pool = null;

@@ -1,10 +1,11 @@
-package org.donglai.logp;
+package org.donglai.logp.core;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.donglai.logp.utils.StringUtils;
 
 /**
@@ -18,10 +19,10 @@ public class ProcessorContext {
 	private static final String CONTEXT_CONFIG_FILE_NAME = "/config.properties";
 	public static final int MAX_THREADS_NUMBER = 48;
 	public static final int MIN_THREADS_NUMBER = 2;
-	private static boolean INITED=false;
+	private static boolean INITED = false;
 	static {
 		contextInitialized();
-		INITED=true;
+		INITED = true;
 	}
 	/**
 	 * the number of threads which are used for executing append row number to
@@ -34,9 +35,16 @@ public class ProcessorContext {
 	private static String CHARSET = "UTF-8";
 
 	public static void contextInitialized() {
-		if(INITED){
+		if (INITED) {
 			return;
 		}
+		// Files.get
+		java.net.URL resource = ProcessorContext.class
+				.getResource("log4j.properties");
+		if (resource != null) {
+			PropertyConfigurator.configure(resource);
+		}
+		// PropertyConfigurator.configureAndWatch("log4j.properties");
 		Properties props = new Properties();
 		InputStream inputStream = null;
 		try {
@@ -62,8 +70,6 @@ public class ProcessorContext {
 			ex.printStackTrace();
 		}
 	}
-
-
 
 	public static int getThreadNumbers() {
 		return THREAD_NUMBERS;

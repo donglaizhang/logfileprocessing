@@ -6,8 +6,16 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.donglai.logp.core.LogRowNumberProcessor;
+import org.donglai.logp.core.ProcessorContext;
+import org.donglai.logp.core.RowNumberCalculator;
+import org.donglai.logp.core.SorterProcessor;
 
 public class Processor {
+	static{
+		System.out.println("asdf");
+		ProcessorContext.contextInitialized();
+	}
 	private static final Log LOG = LogFactory.getLog(Processor.class);
 
 	/**
