@@ -38,13 +38,15 @@ public class ProcessorContext {
 		if (INITED) {
 			return;
 		}
-		// Files.get
+		// init log4j config
 		java.net.URL resource = ProcessorContext.class
 				.getResource("log4j.properties");
 		if (resource != null) {
 			PropertyConfigurator.configure(resource);
 		}
-		// PropertyConfigurator.configureAndWatch("log4j.properties");
+		//init execution log
+		OperationRecorder.init();
+		
 		Properties props = new Properties();
 		InputStream inputStream = null;
 		try {
@@ -75,8 +77,8 @@ public class ProcessorContext {
 		return THREAD_NUMBERS;
 	}
 
-	public static String getCharset() {
-		return CHARSET;
+	public static Charset getCharset() {
+		return Charset.forName(CHARSET);
 	}
 
 }

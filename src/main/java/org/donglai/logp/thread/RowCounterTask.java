@@ -21,8 +21,8 @@ public class RowCounterTask implements Callable<Long> {
 	private static final Log LOG = LogFactory.getLog(RowCounterTask.class);
 	public long countFileRowNumbers() {
 		long numberOfLines;
-		Charset charset = Charset.forName(ProcessorContext.getCharset());
-		try (Stream<String> s = Files.lines(logfile, charset)) {
+		
+		try (Stream<String> s = Files.lines(logfile, ProcessorContext.getCharset())) {
 			numberOfLines = s.count();
 			return numberOfLines;
 		} catch (IOException e) {

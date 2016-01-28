@@ -8,19 +8,19 @@ import java.util.List;
 import java.util.Map;
 
 import org.donglai.logp.core.RowNumberCalculator;
-import org.donglai.logp.core.SorterProcessor;
+import org.donglai.logp.core.FileNameProcessor;
 import org.junit.Before;
 import org.junit.Test;
 
 public class RowNumberCalculatorTest {
 	RowNumberCalculator cal=new RowNumberCalculator();
-	List<Path> list =null;
+	List<String> list =null;
 	String dir="/files1";
 	
+	String real_path=RowNumberCalculatorTest.class.getResource(dir).getFile();
 	@Before
 	public void before(){
-		SorterProcessor sp=new SorterProcessor();
-		String real_path=RowNumberCalculatorTest.class.getResource(dir).getFile();
+		FileNameProcessor sp=new FileNameProcessor();
 		list = sp.getlogfiles(real_path);
 	}
 	/**
@@ -40,19 +40,12 @@ public class RowNumberCalculatorTest {
 	String p4=RowNumberCalculatorTest.class.getResource(dir+"/logtest.2014-09-11.log").getFile();
 	@Test
 	public void testCalRowNumbers() {
-		Map<Path, Long> map = cal.calRowNumbers(list);
-		assertTrue( map.get(Paths.get(p1))== 5l);
-		assertTrue( map.get(Paths.get(p2))== 7l);
-		assertNull( map.get(Paths.get(p3)));
+		long[] rowNumber= cal.calRowNumbers(real_path,list);
+		assertTrue( rowNumber[0]== 5l);
+		assertTrue( rowNumber[1]== 7l);
+		assertTrue(!(rowNumber[2] >0));
 	}
 
-	@Test
-	public void testCalFileStartRowNumber(){
-		Map<Path, String> map = cal.calFileStartRowNumber(list);
-		assertTrue(map.size()==3);
-		assertEquals(map.get(Paths.get(p1)),"1");
-		assertEquals(map.get(Paths.get(p2)),"6");
-		assertEquals(map.get(Paths.get(p4)),"13");
-	}
+	
 	
 }
