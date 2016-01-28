@@ -6,43 +6,37 @@ This document contains these contents: the process of the system, and why I desi
 
 Follow the requirements, there are more than 1,000,000 small log files in a same directory. For processing these files quickly, muti-threads is necessary. 
 
+
+* Assuming the file and directory permission is ok. 
+
 ---
 
 
-## Basic Functions
+## Process description
 According to the requirements, I design this project to several parts:
 
-* Calculating the counts of all the log files.
+* Scaning all the log files in the target directory, recording the filenames, and sorting the filenames by timestamp.
 
-* Sorting the files by timestamp, and calculating the starting row number for every log files
+* Get the total number of the rows of every log files separately by multi-threads and I/O operation.
 
-* Writing the row number to every log files by muti-threads
+* According the results which are from aboving 2 steps: sorted list of names and total number of rows, calculating the start row number for each log files. And output the start number to the disk.
+
+* Inserting the row number to all the log files by multi-threads and the start number for each files.
+
 
 
 ![GitHub][github]
 
 [github]: http://zdonking.com/wp-content/uploads/2016/01/process-design.png "Design graph"
 ---
-## Optimazed Design
 
-For solving this problem better, like the running is interrupted by exception. 
-
-* Storing the intermediate results, like the count of the log file, and the starting row number of the log files.
-
-* If there are no number of thread to config, automatically choosing the number of CPU cores as the deflaut number of threads.
-
- * Supporting if the program is interruptted, it can continue with restarting rather than from the beginning. 
  
- * Optimazing getting the number of rows and sorting by timestamp. These two processes can execute together, it will faster than running one by one.
- 
-
----
-
 ## Techonology Selection
 
 * JDK 1.8
 * Maven 3
 * LOG4j
+* JUnit 4 (scope: test)
 
 ---
 ## Memory Calcuation
@@ -68,16 +62,23 @@ Other functions nomarlly just used a little memory. Like:
 ---
 ## Performance Analysis
 
-* Sort by name. Because the total number of files is about 1,000,000, and the algorithm of sorting in JDK is quick sort, the time complexsity is O(nlogn).
+* Sort by name. Because the total number of files is about 1,000,000, and quick sort is used by JDK, the time complexsity is O(nlogn). About 2s in my Labtop
 * Write the intermediate result to the file. Because the disk is SSD(ref: requirement document), and the intermediate result is about 50MB(list name is 42MB +start number is about 10MB), this process is will be quick.
 
 * If processing of inserting the row number is quick enough, (enough CPU cores), the processing speed may arrive the maximum of disk(like 300MB/s). 1T data need 1024*1024/300=3500s.
 
 ---
+
+## Some Details
+
+* long for row number. Assuming the number of log file is 100,000 in average(20 bytes in one row, totally less than 2MB), and the number of log file is 1,000,000, so the total the number of row is 100,000,000,000. Less than Long.MAX_VALUE
+
+
+
 ## For Extending
 * For more log files
 
-	If the log files are more than 1 million, like 10 million, the memory is not enough to load them. It need to be sorted by multi files, like every 1 million filenames can be sorted in memory and stored in one file. 10 million files means 10 files for storing filenames. Merge every two file with filenames util only one left. 
+	If the log files are more than 1 million, like 100 million, the memory is not enough to load their names. It need to be sorted by multi files, like every 1 million filenames can be sorted in memory and stored in one file. 10 million files means all filenames in 10 sorted files. Merge every two file with filenames util only one left. 
 
 
 
