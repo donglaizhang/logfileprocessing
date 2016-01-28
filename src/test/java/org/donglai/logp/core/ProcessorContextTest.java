@@ -9,7 +9,7 @@ public class ProcessorContextTest {
 	@Test
 	public void testGetThreadNumbers() {
 		ProcessorContext.contextInitialized();
-		assertEquals(ProcessorContext.getThreadNumbers(), 20);
+		assertEquals(ProcessorContext.getThreadNumbers(), 100);
 	}
 
 }
