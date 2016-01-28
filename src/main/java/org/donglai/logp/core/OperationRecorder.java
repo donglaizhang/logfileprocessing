@@ -109,6 +109,18 @@ public class OperationRecorder {
 		}
 		return out;
 	}
+	/**
+	 * delete the recorder files.
+	 */
+	public  void clear() {
+		try {
+			Files.deleteIfExists(getFullPath(LOG_FILE_LIST));
+			Files.deleteIfExists(getFullPath(LOG_PROCESS_RESULT));
+			Files.deleteIfExists(getFullPath(LOG_FILE_ROWS));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 

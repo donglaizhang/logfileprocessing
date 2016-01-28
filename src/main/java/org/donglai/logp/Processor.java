@@ -20,29 +20,33 @@ public class Processor {
 	FileNameProcessor sp=ProcessorFactory.getFileNameProcessor();
 	RowNumberCalculator rncal=ProcessorFactory.getRowNumberCalculator();
 	LogRowNumberProcessor rp=ProcessorFactory.getLogRowNumberProcessor();
-	OperationRecorder opRecorder=null;
 	public void exeucte(String dir){
 		
 		List<String> logfiles = sp.getlogfiles(dir);
 		LOG.info("load log file names finished");
 		rncal.calStoreStartRow(dir,logfiles);
+		LOG.info("calculate the start row number finished");
 		rp.executeAppendRowNumber(dir);
+		LOG.info("insert row number finished");
 	}
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		if(args.length<1){
-			LOG.error("The necessary arguement is lack, the directory of log files should input by arguement.");
+			LOG.error("The necessary argument is lack, the directory should be inputted by argument.");
 			LOG.error("The directory should follow unix style, like: /local/usr/logs/");
 			System.exit(0);
 		}
 		String dir=args[0];
 		ProcessorContext.contextInitialized();
 		OperationRecorder.init(dir);
-		LOG.info("The directory:"+dir+" will be operated");
+		LOG.info("The directory, "+dir+" will be operated");
 		Processor processor=new Processor();
 		processor.exeucte(dir);
+		LOG.info("Processing finished for: "+dir);
+		OperationRecorder.getInstance().clear();
+		System.exit(0);
 	}
 
 }
