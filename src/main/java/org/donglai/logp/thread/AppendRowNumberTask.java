@@ -14,7 +14,7 @@ import org.donglai.logp.utils.StringUtils;
 
 public class AppendRowNumberTask implements Callable<Boolean> {
 	private static final Log LOG = LogFactory.getLog(AppendRowNumberTask.class);
-	static final int FLUSH_SIZE=100;
+	static final int FLUSH_SIZE=500;
 	/**
 	 * append row number to log files
 	 * the process description: 

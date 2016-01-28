@@ -15,16 +15,22 @@ import org.junit.Test;
 
 public class ProcessorUTest {
 
-	String real_path = ProcessorUTest.class.getResource("/ut")
+	String uxpath = ProcessorUTest.class.getResource("/ut")
 			.getFile();
 	@Before
 	public void setUp() throws IOException{
 		//init the test data.
 		String bk_path = ProcessorUTest.class.getResource("/files1")
 				.getFile();
-		copy(Paths.get(bk_path), Paths.get(real_path));
+		copy(Paths.get(bk_path), Paths.get(uxpath));
 		
 	}
+	/**
+	 * copy test log files to  /ut
+	 * @param source
+	 * @param target
+	 * @throws IOException
+	 */
 	private void copy(Path source, Path target) throws IOException{
 		Files.walkFileTree(target, new FileVisitor<Path>() {
 
@@ -65,7 +71,7 @@ public class ProcessorUTest {
 	Processor pro=new Processor();
 	@Test
 	public void testFuntion() throws IOException {
-		pro.exeucte(real_path);
+		pro.exeucte(uxpath);
 	}
 
 }

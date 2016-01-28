@@ -17,7 +17,7 @@ import org.donglai.logp.utils.StringUtils;
  */
 public class ProcessorContext {
 	private static final String CONTEXT_CONFIG_FILE_NAME = "/config.properties";
-	public static final int MAX_THREADS_NUMBER = 48;
+	public static final int MAX_THREADS_NUMBER = 96;
 	public static final int MIN_THREADS_NUMBER = 2;
 	private static boolean INITED = false;
 	static {
