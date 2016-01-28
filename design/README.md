@@ -70,7 +70,7 @@ Other functions nomarlly just used a little memory. Like:
 * If processing of inserting the row number is quick enough, (enough CPU cores), the processing speed may arrive the maximum of disk(like 300MB/s). 1T data need 1024*1024/300=3500s.
 
 ---
-## FOR Extending
+## For Extending
 * For more log files
 
 	If the log files are more than 1 million, like 10 million, the memory is not enough to load them. It need to be sorted by multi files, like every 1 million filenames can be sorted in memory and stored in one file. 10 million files means 10 files for storing filenames. Merge every two file with filenames util only one left. 
