@@ -3,12 +3,7 @@ package org.donglai.logp.core;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -24,12 +19,13 @@ import org.donglai.logp.thread.ThreadManager;
  */
 public class LogRowNumberProcessor {
 	private static final Log LOG = LogFactory.getLog(LogRowNumberProcessor.class);
+	
 	protected LogRowNumberProcessor(){
 		
 	}
+	OperationRecorder logRecord =OperationRecorder.getInstance();
 	private ThreadManager threadManager=new ThreadManager();
-	OperationRecorder logRecord =ProcessorFactory.getOperationRecorder();
-	public void executeAppendRowNumber(Map<Path,String> filesRows){
+	public void executeAppendRowNumber(String dir){
 		ThreadPoolExecutor threadPool = threadManager.getThreadPool();
 		BufferedReader reader = logRecord.getRowStartReader();
 		BufferedWriter resultout = logRecord.getResultWriter();

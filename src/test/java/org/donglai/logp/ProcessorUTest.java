@@ -55,7 +55,6 @@ public class ProcessorUTest {
 
 		});
 	
-//		Files.copy(source, target);
 		Stream<Path> list = Files.list(source);
 		Iterator<Path> it = list.iterator();
 		while (it.hasNext()) {
@@ -63,9 +62,10 @@ public class ProcessorUTest {
 			Files.copy(file, Paths.get(target.toString()+"/"+file.getFileName()));
 		}
 	}
+	Processor pro=new Processor();
 	@Test
 	public void testFuntion() throws IOException {
-		Processor.main(new String[] { real_path });
+		pro.exeucte(real_path);
 	}
 
 }

@@ -20,14 +20,12 @@ public class AppendRowNumberTaskTest {
 	@Before
 	public void setup() throws IOException{
 		logfile=Paths.get(dir_path+"/logtest.2011-07-11.log");
-		
 		String orifile="/files1/logtest.2011-07-11.log";
 		String oripath=AppendRowNumberTaskTest.class.getResource(orifile).getFile();
 		if(Files.exists(logfile)){
 			Files.delete(logfile);
 		}
 		Files.copy(Paths.get(oripath), logfile);
-		
 	}
 	@Test
 	public void testAppendRowNumber() throws IOException {

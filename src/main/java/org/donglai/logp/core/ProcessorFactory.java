@@ -25,18 +25,13 @@ public class ProcessorFactory {
 		}
 		return rowNumberCalculator;
 	}
-	private static OperationRecorder logRecord=null;
-	public static OperationRecorder getOperationRecorder() {
-		if (logRecord == null) {
-			logRecord = new OperationRecorder();
-		}
-		return logRecord;
-	}
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-
-	}
+//	private static OperationRecorder logRecord=null;
+//	public static OperationRecorder getOperationRecorder(String dir) {
+//		if (logRecord == null) {
+//			logRecord = new OperationRecorder(dir);
+//		}
+//		return logRecord;
+//	}
+//	
 
 }

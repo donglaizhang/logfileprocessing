@@ -30,7 +30,7 @@ import org.apache.commons.logging.LogFactory;
 public class FileNameProcessor {
 	private static final Log LOG = LogFactory.getLog(FileNameProcessor.class);
 	final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	OperationRecorder recorder = ProcessorFactory.getOperationRecorder();
+	OperationRecorder recorder =OperationRecorder.getInstance();
 	protected FileNameProcessor(){
 		
 	}

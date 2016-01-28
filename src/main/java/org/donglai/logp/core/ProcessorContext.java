@@ -33,7 +33,7 @@ public class ProcessorContext {
 	 * log file charset which is config in /config.properties
 	 */
 	private static String CHARSET = "UTF-8";
-
+	
 	public static void contextInitialized() {
 		if (INITED) {
 			return;
@@ -45,7 +45,6 @@ public class ProcessorContext {
 			PropertyConfigurator.configure(resource);
 		}
 		//init execution log
-		OperationRecorder.init();
 		
 		Properties props = new Properties();
 		InputStream inputStream = null;

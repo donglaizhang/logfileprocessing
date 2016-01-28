@@ -13,15 +13,21 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class FileNameProcessorTest {
-	FileNameProcessor sp=new FileNameProcessor();
+	FileNameProcessor sp=null;
+	String dir=FileNameProcessorTest.class.getResource("/files1").getFile();
+	@Before
+	public void setUp(){
+		OperationRecorder.init(dir);
+		sp=new FileNameProcessor();
+	}
 	@Test
 	public void testGetlogfiles() {
-		String dir="/files1";
-		String real_path=FileNameProcessorTest.class.getResource(dir).getFile();
-		List<String> list = sp.getlogfiles(real_path);
+	
+		List<String> list = sp.getlogfiles(dir);
 		assertEquals(list.size(), 4);
 		assertTrue(list.get(0).toString().endsWith("logtest.2011-07-11.log"));
 		assertTrue(list.get(2).toString().endsWith("logtest.2014-07-12.log"));
@@ -32,8 +38,13 @@ public class FileNameProcessorTest {
 		List<String> list = sp.getlogfiles(dir);
 		assertTrue(list.isEmpty());
 	}
+	
+	
+	
+	
+	
+	//performance test
 	final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	//TODO
 	public void testPerformanceForMill() throws ParseException{
 		List<Path> large=new java.util.ArrayList<Path>();
 		String dt="1970-01-01";

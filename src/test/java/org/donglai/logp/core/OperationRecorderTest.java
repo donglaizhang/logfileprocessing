@@ -1,20 +1,21 @@
 package org.donglai.logp.core;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class OperationRecorderTest {
-	OperationRecorder or=new OperationRecorder();
+	String dir=FileNameProcessorTest.class.getResource("/files3").getFile();
+	OperationRecorder or =null;
 	@Before
 	public void setUp() throws IOException{
-		OperationRecorder.init();
+		OperationRecorder.init(dir);
+		or= OperationRecorder.getInstance();
 		BufferedWriter w1 = or.getFileListWriter();
 		w1.write("logtest.2014-07-11.log\n");
 		w1.write("logtest.2014-07-12.log\n");

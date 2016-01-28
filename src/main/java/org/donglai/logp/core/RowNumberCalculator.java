@@ -2,12 +2,8 @@ package org.donglai.logp.core;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -31,7 +27,7 @@ public class RowNumberCalculator {
 	}
 
 	private ThreadManager threadManager = new ThreadManager();
-	OperationRecorder recorder = ProcessorFactory.getOperationRecorder();
+	OperationRecorder recorder =OperationRecorder.getInstance();
 
 //	public Map<Path, Long> calRowNumbers1(List<Path> logfiles) {
 //		long[] rownumbers = new long[logfiles.size()];
@@ -81,7 +77,7 @@ public class RowNumberCalculator {
 		return rownumbers;
 	}
 	
-	public void calStartRow(String dir, List<String> logfiles) {
+	public void calStoreStartRow(String dir, List<String> logfiles) {
 		BufferedWriter outer = recorder.getRowStartWriter();
 		long[] fileRows = calRowNumbers(dir,logfiles);
 		String start = "1";
@@ -89,13 +85,14 @@ public class RowNumberCalculator {
 			for (int i = 0; i < logfiles.size(); i++) {
 				String path = logfiles.get(i);
 				if (fileRows[i] > 0) {
-					outer.append(dir+"/"+path).append("\t").append(start);
+					outer.append(dir+"/"+path).append("\t").append(start).append("\n");
 					start = StringUtils.addLong(start, fileRows[i]);
 					if(i%1000==0){
 						outer.flush();
 					}
 				}
 			}
+			outer.flush();
 		} catch (IOException e) {
 			LOG.error("store the start number of the log file failed, caused by",e);
 		}finally{
