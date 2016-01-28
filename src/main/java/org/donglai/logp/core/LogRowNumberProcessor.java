@@ -23,9 +23,9 @@ public class LogRowNumberProcessor {
 	protected LogRowNumberProcessor(){
 		
 	}
-	OperationRecorder logRecord =OperationRecorder.getInstance();
 	private ThreadManager threadManager=new ThreadManager();
 	public void executeAppendRowNumber(String dir){
+		OperationRecorder logRecord =OperationRecorder.getInstance();
 		ThreadPoolExecutor threadPool = threadManager.getThreadPool();
 		BufferedReader reader = logRecord.getRowStartReader();
 		BufferedWriter resultout = logRecord.getResultWriter();

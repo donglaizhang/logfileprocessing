@@ -27,7 +27,7 @@ public class RowNumberCalculator {
 	}
 
 	private ThreadManager threadManager = new ThreadManager();
-	OperationRecorder recorder =OperationRecorder.getInstance();
+	
 
 //	public Map<Path, Long> calRowNumbers1(List<Path> logfiles) {
 //		long[] rownumbers = new long[logfiles.size()];
@@ -78,6 +78,7 @@ public class RowNumberCalculator {
 	}
 	
 	public void calStoreStartRow(String dir, List<String> logfiles) {
+		OperationRecorder recorder =OperationRecorder.getInstance();
 		BufferedWriter outer = recorder.getRowStartWriter();
 		long[] fileRows = calRowNumbers(dir,logfiles);
 		String start = "1";

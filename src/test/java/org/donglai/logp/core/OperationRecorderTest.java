@@ -29,10 +29,15 @@ public class OperationRecorderTest {
 		List<String> list = or.loadlogList();
 		assertEquals(list.size(), 4);
 		assertEquals(list.get(0),"logtest.2014-07-11.log");
-		//logtest.2014-07-11.log> but was: java.lang.String<logtest.2014-07-11.log>
-		//logtest.2014-07-11.log	
 	}
-
-	
+//	@Test
+//	public void testDirSetting(){
+//		OperationRecorder.init("/opt");
+//		System.out.println(OperationRecorder.getInstance().getDir());
+//		OperationRecorder.init("/usr");
+//		System.out.println(OperationRecorder.getInstance().getDir());
+//		OperationRecorder.init("/Application");
+//		System.out.println(OperationRecorder.getInstance().getDir());
+//	}
 
 }

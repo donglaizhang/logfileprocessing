@@ -18,16 +18,26 @@ public class OperationRecorder {
 		if(or==null){
 			or=new OperationRecorder(dir);
 			or.init();
+		}else{
+			if(!dir.equals(or.dir)){
+				or=new OperationRecorder(dir);
+				or.init();
+			}
 		}
+		
 	}
 	public static OperationRecorder getInstance(){
 		return or;
 	}
 	private String dir=null;
+	public String getDir(){
+		return this.dir;
+	}
 	private OperationRecorder(String dir2) {
 		this.dir=dir2;
 		init();
 	}
+	
 	public void init() {
 		try {
 			if (!Files.exists(getFullPath(LOG_FILE_LIST))) {

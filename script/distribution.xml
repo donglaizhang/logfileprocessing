@@ -1,0 +1,37 @@
+<assembly>
+	<id>dist</id>
+	<formats>
+		<format>tar.gz</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<includes>
+				<include>README*</include>
+				<include>LICENSE*</include>
+				<include>NOTICE*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<includes>
+				<include>logrowprocessor-1.0-SNAPSHOT.jar</include>
+			</includes>
+			<outputDirectory>bin</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>bin</directory>
+			<outputDirectory>bin</outputDirectory>
+		</fileSet>
+		<!-- <fileSet>
+			<directory>target/classes</directory>
+			<outputDirectory>classes</outputDirectory>
+		</fileSet> -->
+		
+	</fileSets>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>bin/lib</outputDirectory>
+			<scope>runtime</scope>
+		</dependencySet>
+	</dependencySets>
+</assembly>

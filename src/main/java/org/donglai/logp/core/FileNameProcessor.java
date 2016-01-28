@@ -30,11 +30,11 @@ import org.apache.commons.logging.LogFactory;
 public class FileNameProcessor {
 	private static final Log LOG = LogFactory.getLog(FileNameProcessor.class);
 	final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	OperationRecorder recorder =OperationRecorder.getInstance();
 	protected FileNameProcessor(){
 		
 	}
 	public List<String> getlogfiles(String dir) {
+		OperationRecorder recorder =OperationRecorder.getInstance();
 		Path logdir = Paths.get(dir);
 		LinkedList<String> logfiles = new LinkedList<>();
 		if ((!Files.exists(logdir)) || (!Files.isDirectory(logdir))) {
