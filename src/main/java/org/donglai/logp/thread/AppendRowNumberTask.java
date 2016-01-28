@@ -10,11 +10,11 @@ import java.util.concurrent.Callable;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.donglai.logp.utils.StringUtils;
+import org.donglai.logp.core.ProcessorContext;
 
 public class AppendRowNumberTask implements Callable<Boolean> {
 	private static final Log LOG = LogFactory.getLog(AppendRowNumberTask.class);
-	static final int FLUSH_SIZE=500;
+//	static final int FLUSH_SIZE=5000;
 	/**
 	 * append row number to log files
 	 * the process description: 
@@ -24,6 +24,7 @@ public class AppendRowNumberTask implements Callable<Boolean> {
 	 * @return
 	 */
 	public boolean appendRowNumber() {
+		int flush_size=ProcessorContext.getflush_size();
 		Path bkfile = Paths.get(logfile.toString() + "_");
 		BufferedReader br = null;
 		BufferedWriter writer = null;
@@ -43,7 +44,7 @@ public class AppendRowNumberTask implements Callable<Boolean> {
 				start++;
 				row++;
 				line = br.readLine();
-				if(row%FLUSH_SIZE==0){
+				if(row%flush_size==0){
 					writer.flush();
 				}
 			}

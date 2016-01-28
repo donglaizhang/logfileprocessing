@@ -11,7 +11,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.donglai.logp.thread.RowCounterTask;
 import org.donglai.logp.thread.ThreadManager;
-import org.donglai.logp.utils.StringUtils;
 
 /**
  * Rownumber in the memory evaluation: Total number of files: 1,000,000 Row
@@ -32,7 +31,7 @@ public class RowNumberCalculator {
 	public long[] calRowNumbers(String dir,List<String> logfiles) {
 		long[] rownumbers = new long[logfiles.size()];
 		try {
-			synchronized (logfiles) {
+//			synchronized (logfiles) {
 				for (int i = 0; i < logfiles.size(); i++) {
 					String logfile = logfiles.get(i);
 					RowCounterTask counterTask = new RowCounterTask(Paths.get(dir+"/"+logfile));
@@ -43,7 +42,7 @@ public class RowNumberCalculator {
 						rownumbers[i] = rownum;
 					}
 				}
-			}
+//			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {

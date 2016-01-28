@@ -21,6 +21,7 @@ public class ProcessorContext {
 	private static final String CONTEXT_CONFIG_FILE_NAME = "/config.properties";
 	public static final int MAX_THREADS_NUMBER = 200;
 	public static final int MIN_THREADS_NUMBER = 2;
+	static int FLUSH_SIZE=500;
 	private static boolean INITED = false;
 	static {
 		contextInitialized();
@@ -73,12 +74,18 @@ public class ProcessorContext {
 				THREAD_NUMBERS =MIN_THREADS_NUMBER;
 			}
 			LOG.info("thread numbers:"+THREAD_NUMBERS);
+			//the whole FLUSH SIZE should less 100m, 
+			//assuming the size of line is 500bytes. and just use 60mb for processing 
+			FLUSH_SIZE=60*1024*1024/(THREAD_NUMBERS*500);
+//			THREAD_NUMBERS*150*FLUSH_SIZE/1024<80
 			INITED=true;
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
-
+	public static int getflush_size(){
+		return FLUSH_SIZE;
+	}
 	public static int getThreadNumbers() {
 		return THREAD_NUMBERS;
 	}
