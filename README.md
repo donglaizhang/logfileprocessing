@@ -23,12 +23,16 @@ Maven 3.1
 * mvn compile
 * mvn test
 * mvn package
-* I don't have deploy task.
+* I don't have a deploy task.
 
 
 ---
 ## How to run?
-I will supply a simple shell script to run.
+* mvn package
+* cd target
+* tar xvf logrow-processor-dist.tar.gz 
+* cd bin/
+* sh processor.sh $Path
 
 
 
