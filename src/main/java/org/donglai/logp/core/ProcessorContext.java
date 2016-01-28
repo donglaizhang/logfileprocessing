@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.PropertyConfigurator;
 import org.donglai.logp.utils.StringUtils;
 
@@ -17,7 +19,7 @@ import org.donglai.logp.utils.StringUtils;
  */
 public class ProcessorContext {
 	private static final String CONTEXT_CONFIG_FILE_NAME = "/config.properties";
-	public static final int MAX_THREADS_NUMBER = 96;
+	public static final int MAX_THREADS_NUMBER = 200;
 	public static final int MIN_THREADS_NUMBER = 2;
 	private static boolean INITED = false;
 	static {
@@ -28,7 +30,7 @@ public class ProcessorContext {
 	 * the number of threads which are used for executing append row number to
 	 * log files
 	 */
-	private static int THREAD_NUMBERS = MIN_THREADS_NUMBER;
+	private static int THREAD_NUMBERS ;
 	/**
 	 * log file charset which is config in /config.properties
 	 */
@@ -58,6 +60,7 @@ public class ProcessorContext {
 					CHARSET = file_charset;
 				}
 			}
+			Log LOG = LogFactory.getLog(ProcessorContext.class);
 			String strNum = (String) props.get("thread.number");
 			if (!StringUtils.isPositiveInt(strNum)) {
 				return;
@@ -66,7 +69,11 @@ public class ProcessorContext {
 			if (configNumbers <= MAX_THREADS_NUMBER
 					&& configNumbers >= MIN_THREADS_NUMBER) {
 				THREAD_NUMBERS = configNumbers;
+			}else{
+				THREAD_NUMBERS =MIN_THREADS_NUMBER;
 			}
+			LOG.info("thread numbers:"+THREAD_NUMBERS);
+			INITED=true;
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

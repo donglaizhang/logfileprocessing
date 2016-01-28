@@ -13,7 +13,8 @@ public class StringUtils {
 		return true;
 	}
 	/**
-	 * calculate the value of the big number(string) + long 
+	 * calculate the value of the big number(string) + long
+	 * @deprecated not necessary for this project.
 	 * @param start
 	 * @param number
 	 * @return

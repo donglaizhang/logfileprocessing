@@ -38,9 +38,9 @@ public class AppendRowNumberTask implements Callable<Boolean> {
 			long row=1;
 			String line = br.readLine();
 			while (line != null) {
-				writer.append(start + line);
-				start=StringUtils.addLong(start, 1l);
+				writer.append(start+"." + line);
 				writer.newLine();
+				start++;
 				row++;
 				line = br.readLine();
 				if(row%FLUSH_SIZE==0){
@@ -64,7 +64,7 @@ public class AppendRowNumberTask implements Callable<Boolean> {
 				return false;
 			}
 		}
-		LOG.debug("write row number for log file:"+bkfile.getFileName()+" successful");
+		LOG.info("write row number for log file:"+logfile.getFileName()+" successful");
 		try {
 			Files.delete(bkfile);
 		} catch (IOException e) {
@@ -74,8 +74,8 @@ public class AppendRowNumberTask implements Callable<Boolean> {
 		return true;
 	}
 	private Path logfile;
-	private String start;
-	public AppendRowNumberTask(Path path, String start){
+	private long start;
+	public AppendRowNumberTask(Path path, long start){
 		this.logfile=path;
 		this.start=start;
 	}

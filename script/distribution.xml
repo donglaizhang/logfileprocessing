@@ -12,20 +12,24 @@
 				<include>NOTICE*</include>
 			</includes>
 		</fileSet>
-		<fileSet>
+		<!-- <fileSet>
 			<includes>
 				<include>logrowprocessor-1.0-SNAPSHOT.jar</include>
 			</includes>
 			<outputDirectory>bin</outputDirectory>
-		</fileSet>
+		</fileSet> -->
 		<fileSet>
 			<directory>bin</directory>
 			<outputDirectory>bin</outputDirectory>
 		</fileSet>
-		<!-- <fileSet>
+		 <fileSet>
 			<directory>target/classes</directory>
-			<outputDirectory>classes</outputDirectory>
-		</fileSet> -->
+			<outputDirectory>bin</outputDirectory>
+		</fileSet> 
+		 <fileSet>
+			<directory>design</directory>
+			<outputDirectory>design</outputDirectory>
+		</fileSet> 
 		
 	</fileSets>
 	<dependencySets>

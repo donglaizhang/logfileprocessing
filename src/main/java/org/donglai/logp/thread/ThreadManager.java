@@ -7,7 +7,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.donglai.logp.core.ProcessorContext;
-
+/**
+ * Use JDK thread pool to manage the multi threads.
+ * LinkedBlockingQueue : can accept the new task for ever.
+ *  
+ * @author zdonking
+ *
+ */
 public class ThreadManager {
 	ThreadPoolExecutor pool = null;
 	public ThreadPoolExecutor getThreadPool(){
@@ -21,14 +27,15 @@ public class ThreadManager {
 	}
 	static class DefaultThreadFactory implements ThreadFactory {
 
-//        static final AtomicInteger poolNumber = new AtomicInteger(1);
 
         final ThreadGroup group;
-
+        /**
+         * track the tread situation by thread-name in the log
+         */
         final String namePrefix;
 
         final AtomicInteger threadNumber = new AtomicInteger(1);
-
+        
         DefaultThreadFactory() {
             SecurityManager s = System.getSecurityManager();
             group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();

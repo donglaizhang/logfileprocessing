@@ -29,7 +29,7 @@ public class AppendRowNumberTaskTest {
 	}
 	@Test
 	public void testAppendRowNumber() throws IOException {
-		appendtask=new AppendRowNumberTask(logfile,"100");
+		appendtask=new AppendRowNumberTask(logfile,100);
 		boolean r = appendtask.appendRowNumber();
 		assertTrue(r);
 		assertTrue(Files.exists(logfile));

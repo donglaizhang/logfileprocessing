@@ -29,31 +29,6 @@ public class RowNumberCalculator {
 	private ThreadManager threadManager = new ThreadManager();
 	
 
-//	public Map<Path, Long> calRowNumbers1(List<Path> logfiles) {
-//		long[] rownumbers = new long[logfiles.size()];
-//		Map<Path, Long> fileNum = new HashMap<>();
-//		try {
-//			synchronized (logfiles) {
-//				for (int i = 0; i < logfiles.size(); i++) {
-//					Path logfile = logfiles.get(i);
-//					RowCounterTask counterTask = new RowCounterTask(logfile);
-//					Future<Long> f = threadManager.getThreadPool().submit(
-//							counterTask);
-//					long rownum = f.get();
-//					if (rownum > 0) {
-//						rownumbers[i] = rownum;
-//						fileNum.put(logfile, rownum);
-//					}
-//				}
-//			}
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		} catch (ExecutionException e) {
-//			e.printStackTrace();
-//		}
-//		return fileNum;
-//	}
-
 	public long[] calRowNumbers(String dir,List<String> logfiles) {
 		long[] rownumbers = new long[logfiles.size()];
 		try {
@@ -81,13 +56,14 @@ public class RowNumberCalculator {
 		OperationRecorder recorder =OperationRecorder.getInstance();
 		BufferedWriter outer = recorder.getRowStartWriter();
 		long[] fileRows = calRowNumbers(dir,logfiles);
-		String start = "1";
+		long start=1l;
+//		String start = "1";
 		try {
 			for (int i = 0; i < logfiles.size(); i++) {
 				String path = logfiles.get(i);
 				if (fileRows[i] > 0) {
-					outer.append(dir+"/"+path).append("\t").append(start).append("\n");
-					start = StringUtils.addLong(start, fileRows[i]);
+					outer.append(dir+"/"+path).append("\t").append(start+"").append("\n");
+					start+=fileRows[i];// = StringUtils.addLong(start, fileRows[i]);
 					if(i%1000==0){
 						outer.flush();
 					}
@@ -105,19 +81,5 @@ public class RowNumberCalculator {
 		}
 	}
 
-//	public Map<Path, String> calFileStartRowNumber(List<Path> logfiles) {
-//		LinkedHashMap<Path, String> res = new LinkedHashMap<Path, String>();
-//		Map<Path, Long> fileRows = calRowNumbers1(logfiles);
-//		String start = "1";
-//		for (int i = 0; i < logfiles.size(); i++) {
-//			Path path = logfiles.get(i);
-//			if (fileRows.containsKey(path)) {
-//				res.put(path, start);
-//				Long rowNums = fileRows.get(path);
-//				start = StringUtils.addLong(start, rowNums);
-//			}
-//		}
-//		return res;
-//	}
 
 }

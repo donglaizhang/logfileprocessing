@@ -36,7 +36,7 @@ public class LogRowNumberProcessor {
 				while(line!=null){
 					String[] arr=line.split("\t");
 					String fileName=arr[0];
-					String startNumber=arr[1];
+					long startNumber=Long.parseLong(arr[1]);
 					AppendRowNumberTask rtask=new AppendRowNumberTask(Paths.get(fileName),startNumber); 
 					Future<Boolean> f=threadPool.submit(rtask);
 					Boolean res = f.get();
