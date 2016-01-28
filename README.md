@@ -17,7 +17,14 @@
  
 ---
 ## How to build?
-Because this project is a small one, there is no third-party libraries need to depend on. So I dont' want to use maven/ant for building. I will do a simple shell script file for building.
+
+Maven 3.1
+
+* mvn compile
+* mvn test
+* mvn package
+* I don't have deploy task.
+
 
 ---
 ## How to run?
