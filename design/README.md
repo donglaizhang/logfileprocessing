@@ -17,7 +17,7 @@ According to the requirements, I design this project to several parts:
 * Sorting the files by timestamp, and calculating the starting row number for every log files
 
 * Writing the row number to every log files by muti-threads
-
+[github]: http://zdonking.com/wp-content/uploads/2016/01/process-design.png "Design graph"
 ---
 ## Optimazed Design
 
