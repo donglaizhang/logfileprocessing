@@ -19,7 +19,7 @@ public class ThreadManager {
 	public ThreadPoolExecutor getThreadPool(){
 		if(pool==null){
 			pool=new ThreadPoolExecutor(
-					ProcessorContext.MIN_THREADS_NUMBER,
+					ProcessorContext.getThreadNumbers(),
 					ProcessorContext.getThreadNumbers(), 10000, TimeUnit.MINUTES,
 					new LinkedBlockingQueue<Runnable>(),new DefaultThreadFactory() );
 		}
