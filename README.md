@@ -12,6 +12,7 @@
 ## Structure of project
 * /src/main, for java source code and related property files
  
+
 * /src/test, for test source code and related property files
 
 * /design, for design documents
